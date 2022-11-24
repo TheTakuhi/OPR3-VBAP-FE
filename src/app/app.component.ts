@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {Car} from "./cars/car";
-import {CarService} from "./cars/car.service";
-import {HttpErrorResponse} from "@angular/common/http";
+import { Component, OnInit } from '@angular/core';
+import { Car } from './car';
+import { CarService } from './car.service';
+import { HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -9,7 +9,7 @@ import { NgForm } from '@angular/forms';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   public cars: Car[];
   public editCar: Car;
   public deleteCar: Car;
@@ -20,15 +20,21 @@ export class AppComponent implements OnInit{
     this.getCars();
   }
 
-  public getCars(): void{
-    this.carService.getCars().subscribe((response: Car[]) => {this.cars = response; console.log(this.cars);},
-      (error: HttpErrorResponse) => {alert(error.message);}
+  public getCars(): void {
+    this.carService.getCars().subscribe(
+      (response: Car[]) => {
+        this.cars = response;
+        console.log(this.cars);
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
     );
   }
 
   public onAddCar(addForm: NgForm): void {
     document.getElementById('add-car-form').click();
-    this.carService.addCars(addForm.value).subscribe(
+    this.carService.addCar(addForm.value).subscribe(
       (response: Car) => {
         console.log(response);
         this.getCars();
@@ -42,7 +48,7 @@ export class AppComponent implements OnInit{
   }
 
   public onUpdateCar(car: Car): void {
-    this.carService.updateCars(car).subscribe(
+    this.carService.updateCar(car).subscribe(
       (response: Car) => {
         console.log(response);
         this.getCars();
@@ -54,7 +60,7 @@ export class AppComponent implements OnInit{
   }
 
   public onDeleteCar(carId: number): void {
-    this.carService.deleteCars(carId).subscribe(
+    this.carService.deleteCar(carId).subscribe(
       (response: void) => {
         console.log(response);
         this.getCars();
@@ -69,10 +75,10 @@ export class AppComponent implements OnInit{
     console.log(key);
     const results: Car[] = [];
     for (const car of this.cars) {
-      if (car.name.toLowerCase().indexOf(key.toLowerCase()) !== -1
-        || car.email.toLowerCase().indexOf(key.toLowerCase()) !== -1
-        || car.phone.toLowerCase().indexOf(key.toLowerCase()) !== -1
-        || car.jobTitle.toLowerCase().indexOf(key.toLowerCase()) !== -1) {
+      if (car.brand.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      || car.type.toLowerCase().indexOf(key.toLowerCase()) !== -1
+      || car.price
+      || car.description.toLowerCase().indexOf(key.toLowerCase()) !== -1) {
         results.push(car);
       }
     }
@@ -89,17 +95,20 @@ export class AppComponent implements OnInit{
     button.style.display = 'none';
     button.setAttribute('data-toggle', 'modal');
     if (mode === 'add') {
-      button.setAttribute('data-target', '#addEmployeeModal');
+      button.setAttribute('data-target', '#addCarModal');
     }
     if (mode === 'edit') {
       this.editCar = car;
-      button.setAttribute('data-target', '#updateEmployeeModal');
+      button.setAttribute('data-target', '#updateCarModal');
     }
     if (mode === 'delete') {
       this.deleteCar = car;
-      button.setAttribute('data-target', '#deleteEmployeeModal');
+      button.setAttribute('data-target', '#deleteCarModal');
     }
     container.appendChild(button);
     button.click();
   }
+
+
+
 }

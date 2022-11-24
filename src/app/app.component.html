@@ -1,158 +1,158 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" style="color:white;">Car Manager</a>
+  <a class="navbar-brand" style="color:white;">Used cars</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+  <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarColor02">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" (click)="onOpenModal(null, 'add')">Add Car<span class="sr-only">(current)</span></a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input type="search" (ngModelChange)="searchCars(key.value)" #key="ngModel" ngModel
-             name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search cars..." required>
-    </form>
+     <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+           <a class="nav-link" (click)="onOpenModal(null, 'add')">Add Car <span class="sr-only">(current)</span></a>
+        </li>
+     </ul>
+     <form class="form-inline my-2 my-lg-0">
+        <input type="search" (ngModelChange)="searchCars(key.value)" #key="ngModel" ngModel
+         name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search cars..." required>
+     </form>
   </div>
 </nav>
 <div class="container" id="main-container">
-  <div class="row">
-    <div *ngFor="let car of cars" class="col-md-6 col-xl-3">
-      <div class="card m-b-30">
+<div class="row">
+  <div *ngFor="let car of cars" class="col-md-6 col-xl-3">
+     <div class="card m-b-30">
         <div class="card-body row">
-          <div class="col-6">
-            <a href=""><img src="{{car?.imageUrl}}" alt="" class="img-fluid rounded-circle w-60"></a>
-          </div>
-          <div class="col-6 card-title align-self-center mb-0">
-            <h5>{{car?.brand}}</h5>
-            <p class="m-0">{{car?.bodywork}}</p>
-          </div>
+           <div class="col-6">
+              <a href=""><img src="{{car?.imageUrl}}" alt="" class="img-fluid rounded-circle w-60"></a>
+           </div>
+           <div class="col-6 card-title align-self-center mb-0">
+              <h5>{{car?.brand}}</h5>
+              <p class="m-0">{{car?.type}}</p>
+           </div>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item"><i class="fa fa-envelope float-right"></i>{{car?.fuel}}</li>
-          <li class="list-group-item"><i class="fa fa-phone float-right"></i>{{car?.price}}</li>
+           <li class="list-group-item"><i class="fa fa-envelope float-right"></i>Price [CZK]: {{car?.price}}</li>
+           <li class="list-group-item"><i class="fa fa-phone float-right"></i>{{car?.description}}</li>
         </ul>
         <div class="card-body">
-          <div class="float-right btn-group btn-group-sm">
-            <a (click)="onOpenModal(car, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
-            <a (click)="onOpenModal(car, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>
-          </div>
+           <div class="float-right btn-group btn-group-sm">
+              <a (click)="onOpenModal(car, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+              <a (click)="onOpenModal(car, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>
+           </div>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Add Car -->
-  <div class="modal fade" id="addCarModal" tabindex="-1" role="dialog" aria-labelledby="addCarModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="addCarModalLabel">Add Car</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form #addForm="ngForm" (ngSubmit)="onAddCar(addForm)">
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" ngModel name="name" class="form-control" id="name" placeholder="Name" required>
-            </div>
-            <div class="form-group">
-              <label for="email">Email Address</label>
-              <input type="email" ngModel name="email" class="form-control" id="email" placeholder="Email" required>
-            </div>
-            <div class="form-group">
-              <label for="phone">Job title</label>
-              <input type="text" ngModel name="jobTitle" class="form-control" id="jobTile" placeholder="Job title" required>
-            </div>
-            <div class="form-group">
-              <label for="phone">Phone</label>
-              <input type="text" ngModel name="phone" class="form-control" id="phone" placeholder="Phone" required>
-            </div>
-            <div class="form-group">
-              <label for="phone">Image URL</label>
-              <input type="text" ngModel name="imageUrl" class="form-control" id="imageUrl" placeholder="Image URL" required>
-            </div>
-            <div class="modal-footer">
-              <button type="button" id="add-car-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Save changes</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Edit Car -->
-  <div class="modal fade" id="updateCarModal" tabindex="-1" role="dialog" aria-labelledby="carEditModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="updateCarModalLabel">Edit Car {{editCar?.brand}}</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form #editForm="ngForm">
-            <div class="form-group">
-              <label for="name">Brand</label>
-              <input type="text" ngModel="{{editCar?.brand}}" name="name" class="form-control" id="brand" aria-describedby="emailHelp" placeholder="Brand">
-            </div>
-            <input type="hidden" ngModel="{{editCar?.id}}" name="id" class="form-control" id="id" placeholder="Email">
-            <div class="form-group">
-              <label for="email">Body</label>
-              <input type="email" ngModel="{{editCar?.brand}}" name="email" class="form-control" id="email" placeholder="Email">
-            </div>
-            <div class="form-group">
-              <label for="phone">Job title</label>
-              <input type="text" ngModel="{{editCar?.bodywork}}" name="jobTitle" class="form-control" id="jobTitle" placeholder="Job title">
-            </div>
-            <div class="form-group">
-              <label for="phone">Phone</label>
-              <input type="text" ngModel="{{editCar?.fuel}}" name="phone" class="form-control" id="phone" name="phone" placeholder="Phone">
-            </div>
-            <div class="form-group">
-              <label for="phone">Image URL</label>
-              <input type="text" ngModel="{{editCar?.imageUrl}}" name="imageUrl" class="form-control" id="imageUrl" placeholder="Image URL">
-            </div>
-            <div class="modal-footer">
-              <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
-              <button (click)="onUpdateCar(editForm.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Delete Modal -->
-  <div class="modal fade" id="deleteCarModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="deleteModelLabel">Delete Car</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>Are you sure you want to delete car {{deleteCar?.brand}}?</p>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-            <button (click)="onDeleteCar(deleteCar?.id)" class="btn btn-danger" data-dismiss="modal">Yes</button>
-          </div>
-        </div>
-      </div>
-    </div>
+     </div>
   </div>
 </div>
 
-<!-- Notification for no employees -->
-<div *ngIf="cars?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
-  <div class="alert alert-info" role="alert">
-    <h4 class="alert-heading">NO cars!</h4>
-    <p>No Cars were found.</p>
+<!-- Add Car Modal -->
+<div class="modal fade" id="addCarModal" tabindex="-1" role="dialog" aria-labelledby="addCarModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+       <div class="modal-header">
+          <h5 class="modal-title" id="addCarModalLabel">Add Car</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+       </div>
+       <div class="modal-body">
+          <form #addForm="ngForm" (ngSubmit)="onAddCar(addForm)">
+          <div class="form-group">
+             <label for="brand">Brand</label>
+             <input type="text" ngModel name="brand" class="form-control" id="brand" placeholder="Brand" required>
+          </div>
+          <div class="form-group">
+             <label for="type">Type</label>
+             <input type="text" ngModel name="type" class="form-control" id="type" placeholder="Type" required>
+          </div>
+          <div class="form-group">
+             <label for="price">Price</label>
+             <input type="number" ngModel name="price" class="form-control" id="price" placeholder="Price" required>
+          </div>
+          <div class="form-group">
+             <label for="description">Description</label>
+             <input type="text" ngModel name="description" class="form-control" id="description" placeholder="Description" required>
+          </div>
+          <div class="form-group">
+             <label for="imageUrl">Image URL</label>
+             <input type="text" ngModel name="imageUrl" class="form-control" id="imageUrl" placeholder="Image URL" required>
+          </div>
+          <div class="modal-footer">
+             <button type="button" id="add-car-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
+             <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Save changes</button>
+          </div>
+          </form>
+       </div>
+    </div>
   </div>
+  </div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="updateCarModal" tabindex="-1" role="dialog" aria-labelledby="carEditModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+     <div class="modal-content">
+        <div class="modal-header">
+           <h5 class="modal-title" id="updateCarModalLabel">Edit Car {{editCar?.brand}}</h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+           </button>
+        </div>
+        <div class="modal-body">
+           <form #editForm="ngForm">
+              <div class="form-group">
+                 <label for="brand">Brand</label>
+                 <input type="text" ngModel="{{editCar?.brand}}" name="brand" class="form-control" id="brand" aria-describedby="brand" placeholder="Brand">
+              </div>
+              <input type="hidden" ngModel="{{editCar?.id}}" name="id" class="form-control" id="id" placeholder="Id">
+              <div class="form-group">
+                 <label for="type">Type</label>
+                 <input type="text" ngModel="{{editCar?.type}}" name="type" class="form-control" id="type" placeholder="Type">
+              </div>
+              <div class="form-group">
+                 <label for="price">Price</label>
+                 <input type="number" ngModel="{{editCar?.price}}" name="price" class="form-control" id="price" placeholder="Price">
+              </div>
+              <div class="form-group">
+                 <label for="description">Description</label>
+                 <input type="text" ngModel="{{editCar?.description}}" name="description" class="form-control" id="description" placeholder="Description">
+              </div>
+              <div class="form-group">
+                 <label for="imageUrl">Image URL</label>
+                 <input type="text" ngModel="{{editCar?.imageUrl}}" name="imageUrl" class="form-control" id="imageUrl" placeholder="Image URL">
+              </div>
+              <div class="modal-footer">
+                 <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                 <button (click)="onUpdateCar(editForm.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
+              </div>
+           </form>
+        </div>
+     </div>
+  </div>
+</div>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteCarModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+     <div class="modal-content">
+        <div class="modal-header">
+           <h5 class="modal-title" id="deleteModelLabel">Delete Car</h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+           </button>
+        </div>
+        <div class="modal-body">
+           <p>Are you sure you want to delete car {{deleteCar?.brand}}?</p>
+           <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+              <button (click)="onDeleteCar(deleteCar?.id)" class="btn btn-danger" data-dismiss="modal">Yes</button>
+           </div>
+        </div>
+     </div>
+  </div>
+</div>
+</div>
+
+<!-- Notification for no cars -->
+<div *ngIf="cars?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+<div class="alert alert-info" role="alert">
+  <h4 class="alert-heading">NO CARS!</h4>
+  <p>No Cars were found.</p>
+</div>
 </div>

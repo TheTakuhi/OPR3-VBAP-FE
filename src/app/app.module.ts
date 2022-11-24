@@ -1,10 +1,10 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import {HttpClientModule} from "@angular/common/http";
-import {CarService} from "./cars/car.service";
-import {FormsModule} from "@angular/forms";
+import { CarService } from './car.service';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -12,8 +12,7 @@ import {FormsModule} from "@angular/forms";
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
-    FormsModule
+    HttpClientModule, FormsModule
   ],
   providers: [CarService],
   bootstrap: [AppComponent]
