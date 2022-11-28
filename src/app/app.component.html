@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: olivedrab">
   <a class="navbar-brand" style="color:white;">Used cars</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
   <span class="navbar-toggler-icon"></span>
@@ -21,7 +21,7 @@
      <div class="card m-b-30">
         <div class="card-body row">
            <div class="col-6">
-              <a href=""><img src="{{car?.imageUrl}}" alt="" class="img-fluid rounded-circle w-60"></a>
+              <a href=""><img src="{{car?.imageUrl}}" alt="" class="img-fluid w-200"></a>
            </div>
            <div class="col-6 card-title align-self-center mb-0">
               <h5>{{car?.brand}}</h5>
@@ -98,24 +98,24 @@
            <form #editForm="ngForm">
               <div class="form-group">
                  <label for="brand">Brand</label>
-                 <input type="text" ngModel="{{editCar?.brand}}" name="brand" class="form-control" id="brand" aria-describedby="brand" placeholder="Brand">
+                 <input type="text" ngModel="{{editCar?.brand}}" name="brand" class="form-control" id="brandE" aria-describedby="brand" placeholder="Brand">
               </div>
-              <input type="hidden" ngModel="{{editCar?.id}}" name="id" class="form-control" id="id" placeholder="Id">
+              <input type="hidden" ngModel="{{editCar?.id}}" name="id" class="form-control" id="idE" placeholder="Id">
               <div class="form-group">
                  <label for="type">Type</label>
-                 <input type="text" ngModel="{{editCar?.type}}" name="type" class="form-control" id="type" placeholder="Type">
+                 <input type="text" ngModel="{{editCar?.type}}" name="type" class="form-control" id="typeE" placeholder="Type">
               </div>
               <div class="form-group">
                  <label for="price">Price</label>
-                 <input type="number" ngModel="{{editCar?.price}}" name="price" class="form-control" id="price" placeholder="Price">
+                 <input type="number" ngModel="{{editCar?.price}}" name="price" class="form-control" id="priceE" placeholder="Price">
               </div>
               <div class="form-group">
                  <label for="description">Description</label>
-                 <input type="text" ngModel="{{editCar?.description}}" name="description" class="form-control" id="description" placeholder="Description">
+                 <input type="text" ngModel="{{editCar?.description}}" name="description" class="form-control" id="descriptionE" placeholder="Description">
               </div>
               <div class="form-group">
                  <label for="imageUrl">Image URL</label>
-                 <input type="text" ngModel="{{editCar?.imageUrl}}" name="imageUrl" class="form-control" id="imageUrl" placeholder="Image URL">
+                 <input type="text" ngModel="{{editCar?.imageUrl}}" name="imageUrl" class="form-control" id="imageUrlE" placeholder="Image URL">
               </div>
               <div class="modal-footer">
                  <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
