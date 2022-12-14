@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {TokenStorageService} from './user/authentication/token-storage.service';
+import ActivateGuard from './activate.guard';
 
 @Component({
   selector: 'app-root',
@@ -15,12 +16,14 @@ export class AppComponent implements OnInit{
   constructor(
     private router: Router,
     private tokenStorage: TokenStorageService,
+    private activateGuard: ActivateGuard
   ) {
   }
 
   ngOnInit(): void {
     if (this.tokenStorage.getToken() != null) {
       this.isLoggedIn = true;
+      this.activateGuard.setCanActivate(true);
     }
   }
 

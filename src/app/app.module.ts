@@ -10,6 +10,7 @@ import { TagComponent } from './tag/tag.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './user/login/login.component';
 import { RegistrationComponent } from './user/registration/registration.component';
+import ActivateGuard from './activate.guard';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { RegistrationComponent } from './user/registration/registration.componen
     AppRoutingModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [ActivateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
