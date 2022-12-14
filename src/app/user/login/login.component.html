@@ -1,0 +1,25 @@
+<mat-card *ngIf="!isLoggedIn">
+  <h2>LOGIN</h2>
+
+  <form (ngSubmit)="handleLogin()">
+    <mat-form-field class="form-element" appearance="outline">
+      <mat-label for="username">Username</mat-label>
+      <input matInput type="text" id="username" [(ngModel)]="username" name="username">
+    </mat-form-field>
+
+    <mat-form-field class="form-element" appearance="outline">
+      <mat-label for="password">Password</mat-label>
+      <input matInput type="password" id="password" [(ngModel)]="password" name="password">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">Login</button>
+  </form>
+
+  <button mat-raised-button color="primary" routerLink="/register">Register</button>
+</mat-card>
+
+<div *ngIf="isLoggedIn">
+  <mat-card  class="card-success">
+    <p>Successful login</p>
+  </mat-card>
+</div>
